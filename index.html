@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday, my love 🧁</title>
+<meta name="theme-color" content="#2b1740">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fredoka:wght@400;500;600&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#ff6f91;--blush:#ffd9e5;--milk:#fff4f7;--plum:#2b1740;--ink:#4a2c3a;--mint:#c4f0e2}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:Fredoka,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:#ffe9f0;position:relative;overflow-x:hidden;line-height:1.6}
+body.lock{height:100vh;overflow:hidden}
+section{position:relative;z-index:3;min-height:105vh;padding:90px 20px;max-width:1000px;margin:auto;text-align:center;display:flex;flex-direction:column;justify-content:center;color:var(--fg,var(--ink))}
+h2{font-family:Pacifico,cursive;font-weight:400;font-size:clamp(1.8rem,5vw,2.6rem);color:var(--hc,var(--rose));margin-bottom:8px}
+.sub{opacity:.75;margin-bottom:36px}
+
+/* ---------- gate ---------- */
+#gate{position:fixed;inset:0;z-index:50;display:grid;place-items:center;text-align:center;color:#fff;cursor:pointer;background:radial-gradient(circle at 50% 35%,#6b3a73,var(--plum));transition:opacity 1.4s,transform 1.4s}
+#gate.done{opacity:0;pointer-events:none;transform:scale(1.15)}
+.stars{position:absolute;inset:0;background:radial-gradient(2px 2px at 15% 25%,#fff,transparent),radial-gradient(2px 2px at 80% 15%,#fff,transparent),radial-gradient(1.5px 1.5px at 60% 70%,#fff,transparent),radial-gradient(2px 2px at 30% 80%,#fff,transparent),radial-gradient(1.5px 1.5px at 90% 55%,#fff,transparent);animation:tw 3s infinite alternate}
+.cake{position:relative;width:150px;height:175px;margin:0 auto 28px;animation:bob 3s ease-in-out infinite}
+.candle{position:absolute;left:50%;top:6px;width:10px;height:40px;margin-left:-5px;border-radius:4px;background:repeating-linear-gradient(45deg,#fff 0 6px,var(--rose) 6px 12px)}
+.flame{position:absolute;left:50%;top:-20px;width:16px;height:26px;margin-left:-8px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(#fff6b0 20%,#ffb347 60%,transparent 72%);filter:drop-shadow(0 0 14px #ffc861);animation:fl .3s infinite alternate}
+.flame.off{opacity:0;transition:opacity .3s}
+.frost{position:absolute;left:8px;right:8px;top:42px;height:64px;border-radius:50px 50px 18px 18px;background:radial-gradient(circle at 33% 58%,var(--ink) 4px,transparent 5px),radial-gradient(circle at 67% 58%,var(--ink) 4px,transparent 5px),#ffb3c9;box-shadow:inset 0 -8px 0 #ff93b3}
+.frost::before,.frost::after{content:"";position:absolute;top:-14px;border:13px solid transparent;border-bottom:22px solid #ffb3c9}
+.frost::before{left:6px;transform:rotate(-14deg)}.frost::after{right:6px;transform:rotate(14deg)}
+.liner{position:absolute;left:20px;right:20px;bottom:0;height:72px;clip-path:polygon(0 0,100% 0,88% 100%,12% 100%);background:repeating-linear-gradient(90deg,#ffe3b3 0 10px,#f2c27c 10px 20px)}
+#gate h1{font-family:Pacifico,cursive;font-weight:400;font-size:clamp(1.6rem,6vw,2.4rem)}
+#gate p{opacity:.8;margin-top:6px}
+
+/* ---------- ambient ---------- */
+.fl,.cf,.paw{position:fixed;pointer-events:none;z-index:1;user-select:none}
+.fl{bottom:-60px;animation:up linear forwards;opacity:.55}
+.cf{top:-40px;z-index:60;animation:dn linear forwards}
+.paw{z-index:2;font-size:18px;animation:fade 1.4s forwards}
+.pal{position:absolute;z-index:5;font-size:1.7rem;background:none;border:0;cursor:pointer;opacity:.4;transition:.3s}
+.pal:hover,.pal:focus-visible{opacity:1;transform:scale(1.3) rotate(-12deg)}
+.pal.got{opacity:0;transform:scale(3);pointer-events:none}
+#cnt{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:20;background:#fff;border-radius:99px;padding:6px 16px;font-size:.9rem;box-shadow:0 4px 18px #ff6f9140}
+
+/* ---------- hero ---------- */
+#hero{min-height:100vh;gap:10px;align-items:center}
+#hero .hb{font-family:Pacifico,cursive;font-size:clamp(2.1rem,min(9vw,8vh),4.6rem);color:#d81b60;line-height:1.15;text-shadow:3px 3px 0 #fff}
+#hero .nm{font-family:Caveat,cursive;font-weight:700;font-size:clamp(1.5rem,5vw,2.6rem)}
+#type{min-height:4.6em;max-width:22ch;margin:6px auto;font-size:1rem}
+.hint{animation:bob 2s infinite;margin-top:20px;opacity:.7}
+
+/* ---------- polaroids ---------- */
+.rail{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 20px 40px;margin:0 -20px}
+.pol{flex:0 0 240px;scroll-snap-align:center;background:#fff;padding:12px 12px 16px;border-radius:6px;box-shadow:0 10px 30px #4a2c3a26;transform:rotate(var(--r));transition:transform .4s}
+.pol:hover{transform:rotate(0) scale(1.05)}
+.ph{position:relative;aspect-ratio:4/5;border-radius:3px;background:repeating-linear-gradient(45deg,var(--blush) 0 12px,#ffeaf1 12px 24px);display:grid;place-content:center;font-size:.85rem}
+.ph b{display:block;font-size:2.2rem}.ph small{opacity:.6}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pol figcaption{font-family:Caveat,cursive;font-size:1.4rem;margin-top:10px}
+
+/* ---------- reasons ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px}
+.card{perspective:800px;height:170px;cursor:pointer;background:none;border:0;font:inherit;color:inherit}
+.card i{position:absolute;inset:0;display:grid;place-content:center;padding:16px;border-radius:22px;backface-visibility:hidden;transition:transform .6s;font-style:normal}
+.card .f{background:#fff;box-shadow:0 8px 22px #ff6f9130;font-size:1rem}
+.card .f b{font-size:2.3rem;display:block}
+.card .b{background:var(--rose);color:#fff;transform:rotateY(180deg);font-size:1.02rem}
+.card{position:relative}
+.card.on .f{transform:rotateY(180deg)}.card.on .b{transform:rotateY(360deg)}
+
+/* ---------- wish cupcake / letter ---------- */
+.letter{background:#fffdf8;border-radius:10px;padding:38px 30px;box-shadow:0 14px 40px #4a2c3a22;font-family:Caveat,cursive;font-size:1.55rem;line-height:1.55;text-align:left;max-width:640px;margin:26px auto 0;max-height:0;overflow:hidden;padding-block:0;transition:max-height 1.6s ease,padding .6s}
+.letter.open{max-height:1400px;padding-block:38px}
+.btn{font:inherit;font-weight:500;font-size:1.05rem;border:0;border-radius:99px;padding:14px 30px;background:var(--rose);color:#fff;cursor:pointer;box-shadow:0 8px 22px #ff6f9155;transition:transform .2s}
+.btn:hover{transform:translateY(-3px)}
+footer{position:relative;z-index:3;color:#fff;padding:60px 20px 90px;font-family:Caveat,cursive;font-size:1.6rem;text-align:center}
+
+/* ---------- secret ---------- */
+#secret{position:fixed;inset:0;z-index:70;display:none;place-items:center;background:#2b1740cc;padding:20px}
+#secret.show{display:grid}
+#secret div{background:#fff;border-radius:26px;padding:34px 28px;max-width:420px;text-align:center;animation:pop .6s}
+#secret h3{font-family:Pacifico,cursive;font-weight:400;color:var(--rose);font-size:1.8rem}
+#secret p{margin:12px 0 20px}
+
+#tun{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;animation:beat 1.5s ease-in-out infinite}
+#tun svg{position:absolute;left:50%;top:50%;width:min(94vw,105vh);overflow:visible;will-change:transform,opacity}
+#dep{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:20;font-family:Caveat,cursive;font-size:1.6rem;white-space:nowrap;text-shadow:0 2px 14px #0004;pointer-events:none}
+.letter,.card,.pol{color:var(--ink)}
+.bigh{font-size:4rem;animation:beat 1.5s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.04)}28%{transform:scale(1)}42%{transform:scale(1.03)}}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes fl{to{transform:scale(1.12) rotate(4deg)}}
+@keyframes tw{to{opacity:.4}}
+@keyframes up{to{transform:translateY(-115vh) rotate(40deg)}}
+@keyframes dn{to{transform:translateY(112vh) rotate(540deg)}}
+@keyframes fade{to{opacity:0;transform:translateY(-14px)}}
+@keyframes pop{from{transform:scale(.4);opacity:0}}
+:focus-visible{outline:3px solid var(--rose);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body class="lock">
+
+<!-- ✏️ Tap the candle gate -->
+<div id="gate" role="button" tabindex="0" aria-label="Blow out the candle">
+  <div class="stars"></div>
+  <div>
+    <div class="cake"><div class="flame" id="flame"></div><div class="candle"></div><div class="frost"></div><div class="liner"></div></div>
+    <h1>Close your eyes, make a wish…</h1>
+    <p>then tap the candle 🕯️</p>
+  </div>
+</div>
+
+<div id="tun" aria-hidden="true"></div><div id="dep" aria-live="polite"></div>
+
+<section id="hero">
+  <div class="hb">Happy<br>Birthday</div>
+  <div class="nm" id="name"></div>
+  <p id="type" aria-live="polite"></p>
+  <div class="hint">scroll slowly, come inside my heart ↓</div>
+</section>
+
+<section style="--hc:#8e0b3a">
+  <h2>The memories I keep closest</h2>
+  <p class="sub">swipe through, then keep going deeper ↓</p>
+  <div class="rail" id="rail"></div>
+</section>
+
+<section style="--fg:#fff;--hc:#fff">
+  <h2>Deeper still, where you live</h2>
+  <p class="sub">tap a card to flip it</p>
+  <div class="grid" id="reasons"></div>
+</section>
+
+<section style="--fg:#fff;--hc:#fff">
+  <h2>The centre of my heart</h2>
+  <p class="sub">this is where I keep you</p>
+  <button class="btn" id="openL">Open my letter 💌</button>
+  <div class="letter" id="letter"></div>
+</section>
+
+<footer id="foot"></footer>
+
+<div id="cnt">🐾 hidden friends found: <b id="n">0</b>/5</div>
+
+<div id="secret" role="dialog" aria-modal="true">
+  <div>
+    <h3>You found them all! 🎁</h3>
+    <p id="prize"></p>
+    <button class="btn" id="closeS">Yay 💖</button>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   ✏️ EDIT THIS PART — everything on the page comes from here
+   ========================================================= */
+const C = {
+  name: "My Love",                 // her name or nickname
+  from: "Swapnanil",               // your name
+  typed: "Another trip around the sun, and somehow you got even more wonderful.",
+  // Put her photos in a folder called "photos" next to index.html
+  // and name them 1.jpg, 2.jpg ... (or change the paths below).
+  photos: [
+    {src:"photos/1.jpeg", cap:"Dil garden- garden ho gaya"},
+    {src:"photos/2.jpeg", cap:"Our silly moment"},
+    {src:"photos/3.jpeg", cap:"Always my Bichi Mao"},
+    {src:"photos/4.jpeg", cap:"You, being you"},
+    {src:"photos/5.jpeg", cap:"Forever to go"}
+  ],
+  reasons: [
+    {e:"🐱", t:"You make every ordinary day feel soft and warm, like a cat in a sunbeam."},
+    {e:"🐼", t:"Your laugh is my favourite sound in the whole world."},
+    {e:"🧁", t:"You turn small things into sweet little celebrations."},
+    {e:"🐰", t:"You’re gentle with everyone, even tiny creatures. That’s who you are."},
+    {e:"🌸", t:"With you, I get to be completely myself."},
+    {e:"💖", t:"Because it’s you. It was always going to be you."},
+    {e:"🐱", t:"LIfe with you is simply non-stop fun, always want to be with you."},
+    {e:"🌹", t:"Everyday 365 X Bichi Mao w you and only you."}
+
+  ],
+  letter: `My love,<br><br>
+    Today is your day, so I wanted to make you something that’s only yours, the way you make everything in my life feel only mine.<br><br>
+    Everything with you is wonderful and I always wanna be there with you. My one and only Bichi Mao <br><br>
+    Happy birthday, my favourite person. I love you, today and always.`,
+  secret: "Your secret gift: one cat-café date, a dessert of your choice, and unlimited hugs. Valid forever. 🐾",
+  footer: "Made with all my love ✨"
+};
+
+/* ================= magic below ================= */
+const $ = s => document.querySelector(s), E = ["🐱","🐼","🧁","🐰","💖","💗","🌹","💕","🐹","🌸","🐨","✨"];
+const mk = (cls, txt, css) => { const d = document.createElement("span"); d.className = cls; d.textContent = txt; Object.assign(d.style, css); document.body.append(d); return d; };
+
+function burst(n){
+  for(let i=0;i<n;i++){
+    const t = 2.5 + Math.random()*3;
+    const el = mk("cf", E[i % E.length], {left:Math.random()*100+"vw", fontSize:14+Math.random()*18+"px", animationDuration:t+"s", animationDelay:Math.random()*.8+"s"});
+    setTimeout(()=>el.remove(), (t+1)*1000);
+  }
+}
+function drift(){
+  const el = mk("fl", E[Math.floor(Math.random()*E.length)], {left:Math.random()*100+"vw", fontSize:18+Math.random()*20+"px", animationDuration:12+Math.random()*8+"s"});
+  setTimeout(()=>el.remove(), 21000);
+}
+
+// fill content
+$("#name").textContent = "for " + C.name;
+$("#foot").innerHTML = '<div class="bigh">💖</div>' + C.footer + "<br>— " + C.from;
+$("#letter").innerHTML = C.letter + "<br><br>Forever yours,<br>" + C.from;
+$("#prize").textContent = C.secret;
+
+$("#rail").innerHTML = C.photos.map((p,i)=>`
+  <figure class="pol" style="--r:${[-3,2,-2,3,-1,2][i%6]}deg">
+    <div class="ph"><div><b>📷</b>Your photo here<br><small>${p.src}</small></div>
+      <img src="${p.src}" alt="${p.cap}" loading="lazy" onerror="this.remove()"></div>
+    <figcaption>${p.cap}</figcaption>
+  </figure>`).join("");
+
+$("#reasons").innerHTML = C.reasons.map(r=>`
+  <button class="card" aria-label="Flip card"><i class="f"><b>${r.e}</b>tap me</i><i class="b">${r.t}</i></button>`).join("");
+document.querySelectorAll(".card").forEach(c => c.onclick = () => c.classList.toggle("on"));
+
+$("#openL").onclick = e => { $("#letter").classList.add("open"); e.target.style.display = "none"; burst(30); };
+
+// ---- the heart tunnel: scrolling = travelling deeper inside ----
+const FILL=["#ffc9d9","#ff9dba","#e64a7b","#b8244f","#7d1038","#40061c"], R=2.4, N=FILL.length;
+const HP="M50 85C10 55 0 35 0 22C0 8 12 0 25 0C37 0 46 7 50 15C54 7 63 0 75 0C88 0 100 8 100 22C100 35 90 55 50 85Z";
+$("#tun").innerHTML=FILL.map(c=>`<svg viewBox="0 0 100 90"><path d="${HP}" fill="${c}" stroke="rgba(255,255,255,.6)" stroke-width="2.5" vector-effect="non-scaling-stroke"/></svg>`).join("");
+const hs=[...document.querySelectorAll("#tun svg")];
+const WORDS=["step inside…","a little deeper","closer to my heart","deeper still","almost there","the centre of my heart"];
+let lastW=-1;
+function zoom(){
+  const m=document.documentElement.scrollHeight-innerHeight, p=m>0?Math.min(1,Math.max(0,scrollY/m)):0, t=p*(N-1);
+  hs.forEach((h,i)=>{const d=i-t;
+    h.style.transform=`translate(-50%,-50%) scale(${Math.pow(R,-d)})`;
+    h.style.opacity=d>0?Math.max(0,1-d*.5):1;
+    h.style.visibility=(d<-3||d>3)?"hidden":"visible";});
+  const w=Math.round(t); if(w!==lastW){lastW=w;$("#dep").textContent=WORDS[w];}
+  $("#dep").style.color=t<1.2?"#8e0b3a":"#fff";
+}
+addEventListener("scroll",zoom,{passive:true});addEventListener("resize",zoom);zoom();
+
+// gate: blow out the candle
+function open(){
+  if(document.body.classList.contains("lock") === false) return;
+  $("#flame").classList.add("off");
+  $("#gate").classList.add("done");
+  document.body.classList.remove("lock");
+  burst(90);
+  let i = 0, s = C.typed;
+  (function t(){ $("#type").textContent = s.slice(0, ++i); if(i < s.length) setTimeout(t, 45); })();
+  setInterval(drift, 1500);
+  setTimeout(()=>$("#gate").remove(), 1600);
+}
+$("#gate").onclick = open;
+$("#gate").onkeydown = e => { if(e.key === "Enter" || e.key === " ") open(); };
+
+// hidden little friends
+let found = 0;
+["🐼","🐱","🐰","🐹","🐨"].forEach((p,i) => {
+  const b = document.createElement("button");
+  b.className = "pal"; b.textContent = p; b.setAttribute("aria-label","A hidden friend");
+  b.style.top = (22 + i*15 + Math.random()*8) + "%";
+  b.style.left = (6 + Math.random()*84) + "%";
+  b.onclick = () => {
+    b.classList.add("got"); $("#n").textContent = ++found;
+    if(found === 5){ burst(120); $("#secret").classList.add("show"); }
+  };
+  document.body.append(b);
+});
+$("#closeS").onclick = () => $("#secret").classList.remove("show");
+
+// paw prints follow your finger / cursor
+let last = 0;
+addEventListener("pointermove", e => {
+  const now = Date.now(); if(now - last < 160) return; last = now;
+  const p = mk("paw", Math.random()<.5?"🐾":"💗", {left:e.clientX+"px", top:e.clientY+"px"});
+  setTimeout(()=>p.remove(), 1400);
+});
+</script>
+</body>
+</html>
